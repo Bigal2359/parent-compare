@@ -177,6 +177,21 @@ img {
   display: none;
 }
 
+.face-select-prompt {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 4px;
+  color: #fff;
+  font-size: 14px;
+  left: 50%;
+  padding: 6px 14px;
+  pointer-events: none;
+  position: absolute;
+  top: 8px;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  z-index: 10;
+}
+
 .first-loaded #leftside {
   display: block;
 }
