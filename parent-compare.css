@@ -1,0 +1,186 @@
+body {
+  background: #44a6d4;
+  color: #fff;
+  font-weight: 700;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 100vw;
+  height: 50vh;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+.loaded .container {
+  display: flex;
+}
+
+.box {
+  left: 0;
+  margin: auto;
+  right: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.5s ease-out;
+  z-index: 1000;
+}
+
+.img-loaded.box {
+  bottom: 10px;
+  top: auto;
+  transform: translateY(0);
+}
+
+input {
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  width: 0.1px;
+  z-index: -1;
+}
+
+label {
+  background-color: #fff;
+  border: 1px solid #000;
+  color: #000;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.25rem;
+  height: 150px;
+  max-width: 80%;
+  overflow: hidden;
+  padding: 1.25rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 160px;
+}
+
+.img-loaded.box label {
+  height: auto;
+  padding: 0.6rem;
+}
+
+.box img {
+  display: block;
+  height: auto;
+}
+
+img.baby {
+  margin: 0 auto 23px;
+  width: 100px;
+}
+
+.side img.face {
+  margin: 23px auto;
+  width: 70px;
+}
+
+.img-loaded.box img {
+  display: none;
+}
+
+input:focus + label {
+  outline: 1px dotted #000;
+  outline: -webkit-focus-ring-color auto 5px;
+}
+
+canvas {
+  left: 0;
+  margin: auto;
+  max-height: 100%;
+  max-width: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+#topside {
+  height: 100%;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+#topside canvas {
+  height: 100%;
+  width: auto;
+}
+
+img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.side {
+  position: relative;
+  text-align: center;
+  width: 50%;
+  height: 100%;
+}
+
+#loaded {
+  font-size: 30px;
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: visibility 2.0s, opacity 1.0s ease-in 1s;
+}
+
+.distance {
+  color: #fff;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 43px;
+  left: 0;
+  height: 100%;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.31);
+  top: 0;
+}
+
+.loaded #loaded {
+  opacity: 0;
+  visibility: hidden;
+}
+
+#loaded span {
+  animation: blink 1s infinite alternate;
+}
+
+@keyframes blink {
+  from {
+    opacity: 1;
+  }
+  
+  to {
+    opacity: 0;
+  }
+}
+
+#rightside,
+#leftside {
+  display: none;
+}
+
+.first-loaded #leftside {
+  display: block;
+}
+
+.second-loaded #rightside {
+  display: block;
+}

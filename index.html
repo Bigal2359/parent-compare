@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="/face-api.min.js"></script>
+  <script type="module" src="parent-compare.js"></script>
+  <title>Face Compare</title>
+  <link rel="stylesheet" type="text/css" href="parent-compare.css" />
+</head>
+<body>
+  <div class="container">
+    <div id="topside">
+      <div class="box" id="box1">
+        <input type="file" id="imageUpload1">
+        <label for="imageUpload1">
+          <img class="baby" src="img/baby.svg">
+          <span>Add baby photo</span>
+        </label>
+      </div>
+      <div id="error1" class="error"></div>
+    </div>
+  </div>
+  <div class="container">
+    <div id="leftside" class="side">
+      <div class="box" id="box2">
+        <input type="file" id="imageUpload2">
+        <label for="imageUpload2">
+          <img class="face" src="img/face.svg">
+          <span>Add parent photo</span>
+        </label>
+      </div>
+      <div id="distance1" class="distance"></div>
+      <div id="error2" class="error"></div>
+    </div>
+    <div id="rightside" class="side">
+      <div class="box" id="box3">
+        <input type="file" id="imageUpload3">
+        <label for="imageUpload3">
+          <img class="face" src="img/face.svg">
+          <span>Add parent photo</span>
+        </label>
+      </div>
+      <div id="distance2" class="distance"></div>
+      <div id="error3" class="error"></div>
+    </div>
+  </div>
+  <div id="loaded">SHHHHHHH...<br>Parent Face Comparison is <br><span>LOADING...</span></div>
+</body>
+</html>
