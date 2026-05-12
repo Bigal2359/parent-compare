@@ -40,14 +40,6 @@ function drawBoxes(canvas, detections, selectedIndex = -1) {
     ctx.strokeStyle = color
     ctx.lineWidth = selected ? 3 : 2
     ctx.strokeRect(x, y, width, height)
-
-    const label = String(i + 1)
-    ctx.font = 'bold 18px sans-serif'
-    const textWidth = ctx.measureText(label).width
-    ctx.fillStyle = 'rgba(0,0,0,0.55)'
-    ctx.fillRect(x + 4, y + 4, textWidth + 8, 24)
-    ctx.fillStyle = color
-    ctx.fillText(label, x + 8, y + 22)
   })
 }
 
