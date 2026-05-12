@@ -63,7 +63,7 @@ async function processImage(image, container, descKey, onComplete) {
   faceapi.matchDimensions(canvas, displaySize)
 
   const detections = faceapi.resizeResults(
-    await faceapi.detectAllFaces(image).withFaceLandmarks().withFaceDescriptor(),
+    await faceapi.detectAllFaces(image).withFaceLandmarks(),
     displaySize
   )
 
@@ -72,10 +72,14 @@ async function processImage(image, container, descKey, onComplete) {
     return
   }
 
-  if (detections.length === 1) {
-    drawBoxes(canvas, detections, 0)
-    descriptors[descKey] = detections[0].descriptor
+  async function selectFace(index) {
+    drawBoxes(canvas, detections, index)
+    descriptors[descKey] = await faceapi.computeFaceDescriptor(image, detections[index])
     onComplete()
+  }
+
+  if (detections.length === 1) {
+    await selectFace(0)
     return
   }
 
@@ -101,9 +105,7 @@ async function processImage(image, container, descKey, onComplete) {
     canvas.style.cursor = 'default'
     prompt.remove()
 
-    drawBoxes(canvas, detections, index)
-    descriptors[descKey] = detections[index].descriptor
-    onComplete()
+    selectFace(index)
   })
 }
 
