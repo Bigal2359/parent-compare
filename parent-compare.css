@@ -136,7 +136,7 @@ img {
   text-align: center;
   top: 50%;
   transform: translateY(-50%);
-  transition: visibility 2.0s, opacity 1.0s ease-in 1s;
+  transition: visibility 1.0s, opacity 1.0s ease-in;
 }
 
 .distance {

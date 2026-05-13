@@ -102,8 +102,9 @@ async function processImage(image, container, descKey, onComplete) {
 }
 
 async function start() {
-  document.getElementById('loaded').innerHTML = 'Loaded'
-  document.getElementsByTagName('body')[0].className += ' loaded'
+  setTimeout(() => {
+    document.getElementsByTagName('body')[0].className += ' loaded'
+  }, 3000)
 
   let image1
 
