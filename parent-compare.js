@@ -103,8 +103,13 @@ async function processImage(image, container, descKey, onComplete) {
 
 async function start() {
   setTimeout(() => {
-    document.getElementsByTagName('body')[0].className += ' loaded'
-  }, 3000)
+    const overlay = document.getElementById('loaded')
+    overlay.style.opacity = '0'
+    overlay.style.visibility = 'hidden'
+    setTimeout(() => {
+      document.getElementsByTagName('body')[0].className += ' loaded'
+    }, 400)
+  }, 2500)
 
   let image1
 
