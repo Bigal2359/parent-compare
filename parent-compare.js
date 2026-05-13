@@ -43,6 +43,24 @@ function drawBoxes(canvas, detections, selectedIndex = -1) {
   })
 }
 
+function setupDropZone(el, onFile) {
+  el.addEventListener('dragover', (e) => {
+    e.preventDefault()
+    el.classList.add('drag-over')
+  })
+  el.addEventListener('dragleave', (e) => {
+    if (!el.contains(e.relatedTarget)) {
+      el.classList.remove('drag-over')
+    }
+  })
+  el.addEventListener('drop', (e) => {
+    e.preventDefault()
+    el.classList.remove('drag-over')
+    const file = e.dataTransfer.files[0]
+    if (file && file.type.startsWith('image/')) onFile(file)
+  })
+}
+
 async function processImage(image, container, descKey, onComplete) {
   const oldCanvas = container.querySelector('canvas')
   if (oldCanvas) oldCanvas.remove()
@@ -112,11 +130,11 @@ async function start() {
   }, 2500)
 
   let image1
+  const topside = document.getElementById('topside')
 
-  imageUpload1.addEventListener('change', async () => {
+  async function handleImage1(file) {
     if (image1) image1.remove()
-    image1 = await faceapi.bufferToImage(imageUpload1.files[0])
-    const topside = document.getElementById('topside')
+    image1 = await faceapi.bufferToImage(file)
     topside.append(image1)
     document.getElementById('box1').className += ' img-loaded'
 
@@ -129,16 +147,19 @@ async function start() {
         updateResult()
       }
     })
-  })
+  }
+
+  imageUpload1.addEventListener('change', () => handleImage1(imageUpload1.files[0]))
+  setupDropZone(topside, handleImage1)
 }
 
 function setupParent2() {
   let image2
+  const leftside = document.getElementById('leftside')
 
-  imageUpload2.addEventListener('change', async () => {
+  async function handleImage2(file) {
     if (image2) image2.remove()
-    image2 = await faceapi.bufferToImage(imageUpload2.files[0])
-    const leftside = document.getElementById('leftside')
+    image2 = await faceapi.bufferToImage(file)
     leftside.append(image2)
     document.getElementById('box2').className += ' img-loaded'
 
@@ -151,16 +172,19 @@ function setupParent2() {
         updateResult()
       }
     })
-  })
+  }
+
+  imageUpload2.addEventListener('change', () => handleImage2(imageUpload2.files[0]))
+  setupDropZone(leftside, handleImage2)
 }
 
 function setupParent3() {
   let image3
+  const rightside = document.getElementById('rightside')
 
-  imageUpload3.addEventListener('change', async () => {
+  async function handleImage3(file) {
     if (image3) image3.remove()
-    image3 = await faceapi.bufferToImage(imageUpload3.files[0])
-    const rightside = document.getElementById('rightside')
+    image3 = await faceapi.bufferToImage(file)
     rightside.append(image3)
     document.getElementById('box3').className += ' img-loaded'
 
@@ -169,5 +193,8 @@ function setupParent3() {
         updateResult()
       }
     })
-  })
+  }
+
+  imageUpload3.addEventListener('change', () => handleImage3(imageUpload3.files[0]))
+  setupDropZone(rightside, handleImage3)
 }

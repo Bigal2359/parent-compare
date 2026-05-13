@@ -177,6 +177,11 @@ img {
   display: none;
 }
 
+.drag-over .box:not(.img-loaded) label {
+  outline: 3px dashed rgba(255, 255, 255, 0.7);
+  outline-offset: 12px;
+}
+
 .face-select-prompt {
   background: rgba(0, 0, 0, 0.6);
   border-radius: 4px;
