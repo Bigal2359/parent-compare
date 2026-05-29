@@ -132,36 +132,34 @@ img {
 }
 
 #logo-container {
+  bottom: 0;
   left: 0;
-  margin: auto;
   pointer-events: none;
   position: fixed;
   right: 0;
-  top: 5vh;
-  /* scale(5.71) = 800px / 140px — makes 140px element appear 800px wide initially */
-  /* translateY(33vh) shifts center down from 5vh to 38vh (38vh - 5vh = 33vh) */
-  transform: translateY(calc(-50% + 33vh)) scale(5.71);
-  transition: transform 0.7s ease-in-out;
-  width: 140px;
+  top: 0;
   z-index: 999;
 }
 
-#logo-container.shrunk {
-  transform: translateY(-50%);
+#logo-svg {
+  display: block;
+  left: 50%;
+  position: absolute;
+  top: 38%;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.4s ease-in;
+  width: min(90vw, 800px);
 }
 
-#logo-svg,
 #logo-png {
   display: block;
-  transition: opacity 0.4s ease-in 0.25s;
-  width: 100%;
-}
-
-#logo-png {
-  left: 0;
+  left: 50%;
   opacity: 0;
   position: absolute;
-  top: 0;
+  top: 5vh;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.5s ease-in 0.4s;
+  width: 140px;
 }
 
 #logo-container.shrunk #logo-svg {
