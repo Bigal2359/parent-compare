@@ -9,7 +9,8 @@ const imageUpload3 = document.getElementById('imageUpload3')
 Promise.all([
   faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
   faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
-  faceapi.nets.ssdMobilenetv1.loadFromUri('/models')
+  faceapi.nets.ssdMobilenetv1.loadFromUri('/models'),
+  new Promise(resolve => setTimeout(resolve, 2000))
 ]).then(start)
 
 function updateResult() {
@@ -120,16 +121,19 @@ async function processImage(image, container, descKey, onComplete) {
 }
 
 async function start() {
-  setTimeout(() => {
-    document.getElementById('logo-container').classList.add('shrunk')
+  const overlay = document.getElementById('loaded')
+  overlay.querySelector('span').textContent = 'PRESS START'
+  overlay.classList.add('ready')
 
-    const overlay = document.getElementById('loaded')
+  overlay.addEventListener('click', () => {
+    overlay.classList.remove('ready')
+    document.getElementById('logo-container').classList.add('shrunk')
     overlay.style.opacity = '0'
     overlay.style.visibility = 'hidden'
     setTimeout(() => {
       document.getElementsByTagName('body')[0].className += ' loaded'
     }, 400)
-  }, 2500)
+  }, { once: true })
 
   let image1
   const topside = document.getElementById('topside')
