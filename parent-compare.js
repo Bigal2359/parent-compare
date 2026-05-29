@@ -121,6 +121,8 @@ async function processImage(image, container, descKey, onComplete) {
 
 async function start() {
   setTimeout(() => {
+    document.getElementById('logo-container').classList.add('shrunk')
+
     const overlay = document.getElementById('loaded')
     overlay.style.opacity = '0'
     overlay.style.visibility = 'hidden'
