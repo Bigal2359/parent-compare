@@ -151,7 +151,7 @@ img {
 #logo-svg,
 #logo-png {
   display: block;
-  transition: opacity 0.7s ease-in-out 0.25s;
+  transition: opacity 0.25s ease-in 0.25s;
   width: 100%;
 }
 
