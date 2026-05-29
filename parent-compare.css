@@ -132,26 +132,28 @@ img {
 }
 
 #logo-container {
-  left: 50%;
+  left: 0;
+  margin: auto;
   pointer-events: none;
   position: fixed;
-  top: 38%;
-  transform: translate(-50%, -50%);
-  transition: top 0.7s ease-in-out, width 0.7s ease-in-out, transform 0.7s ease-in-out;
-  width: 50vw;
+  right: 0;
+  top: 5vh;
+  /* scale(5.71) = 800px / 140px — makes 140px element appear 800px wide initially */
+  /* translateY(33vh) shifts center down from 5vh to 38vh (38vh - 5vh = 33vh) */
+  transform: translateY(calc(-50% + 33vh)) scale(5.71);
+  transition: transform 0.7s ease-in-out;
+  width: 140px;
   z-index: 999;
 }
 
 #logo-container.shrunk {
-  top: 5vh;
-  transform: translate(-50%, -50%);
-  width: 140px;
+  transform: translateY(-50%);
 }
 
 #logo-svg,
 #logo-png {
   display: block;
-  transition: opacity 0.25s ease-in 0.25s;
+  transition: opacity 0.4s ease-in 0.25s;
   width: 100%;
 }
 
