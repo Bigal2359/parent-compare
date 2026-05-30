@@ -206,12 +206,18 @@ img {
 }
 
 #loaded.ready span {
-  animation: blink 0.6s infinite alternate;
+  animation: blinkReady 1.5s infinite;
   color: #e94b6a;
 }
 
 #loaded span {
   animation: none;
+}
+
+@keyframes blinkReady {
+  0%, 65% { opacity: 1; }
+  80% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 @keyframes blink {
