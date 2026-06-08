@@ -1,6 +1,7 @@
 let firstImg = false
 let secondImg = false
 let descriptors = { desc1: null, desc2: null, desc3: null }
+let selectedFaces = { face2: null, face3: null }
 
 const imageUpload1 = document.getElementById('imageUpload1')
 const imageUpload2 = document.getElementById('imageUpload2')
@@ -27,16 +28,26 @@ function updateResult() {
   const [color1, color2] = distance1 <= distance2 ? [green, red] : [red, green]
   document.getElementById('distance1').style.backgroundColor = color1
   document.getElementById('distance2').style.backgroundColor = color2
+
+  const [boxColor2, boxColor3] = distance1 <= distance2 ? ['#00ff00', '#ff0000'] : ['#ff0000', '#00ff00']
+  if (selectedFaces.face2) {
+    const { canvas, detections, index } = selectedFaces.face2
+    drawBoxes(canvas, detections, index, boxColor2)
+  }
+  if (selectedFaces.face3) {
+    const { canvas, detections, index } = selectedFaces.face3
+    drawBoxes(canvas, detections, index, boxColor3)
+  }
 }
 
-function drawBoxes(canvas, detections, selectedIndex = -1) {
+function drawBoxes(canvas, detections, selectedIndex = -1, selectedColor = '#00ff00') {
   const ctx = canvas.getContext('2d')
   ctx.clearRect(0, 0, canvas.width, canvas.height)
 
   detections.forEach((det, i) => {
     const { x, y, width, height } = det.detection.box
     const selected = i === selectedIndex
-    const color = selected ? '#00ff00' : '#ffffff'
+    const color = selected ? selectedColor : '#ffffff'
 
     ctx.strokeStyle = color
     ctx.lineWidth = selected ? 3 : 2
@@ -86,6 +97,8 @@ async function processImage(image, container, descKey, onComplete) {
   function selectFace(index) {
     drawBoxes(canvas, detections, index)
     descriptors[descKey] = detections[index].descriptor
+    if (descKey === 'desc2') selectedFaces.face2 = { canvas, detections, index }
+    if (descKey === 'desc3') selectedFaces.face3 = { canvas, detections, index }
     onComplete()
   }
 
