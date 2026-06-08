@@ -235,6 +235,26 @@ img {
   display: none;
 }
 
+#parent-container {
+  position: relative;
+}
+
+#vs-img {
+  display: none;
+  left: 50%;
+  max-width: 200px;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 20%;
+  z-index: 200;
+}
+
+.second-loaded #vs-img {
+  display: block;
+}
+
 .drag-over .box:not(.img-loaded) label {
   outline: 3px dashed rgba(255, 255, 255, 0.7);
   outline-offset: 12px;
