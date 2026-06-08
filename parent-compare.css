@@ -210,6 +210,11 @@ img {
   color: #e94b6a;
 }
 
+#loaded.ready:hover span {
+  animation: none;
+  color: #fff;
+}
+
 #loaded span {
   animation: none;
 }
